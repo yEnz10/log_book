@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Top menu item -->
+    <menuitem id="log_book_menu_root"
+        name="Log Book"
+        web_icon="log_book,static/icon.png"
+        active="False"
+        sequence="7"/>
+    <menuitem id="log_book__sub_menu" 
+        name="Log Book Profile" 
+        parent="log_book_menu_root" />
+    <!-- <menuitem id="log_book__profile_menu" 
+        name="Log Book Profile"
+        action="action_log_book_profile" 
+        parent ="log_book_sub_menu" /> -->
+</odoo>

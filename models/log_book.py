@@ -1,10 +1,14 @@
 # -*- coding: utf-8 -*-
 
-# from odoo import models, fields, api
+from odoo import models, fields, api
 
 
-# class c:\users\phong\documents\101\odoo\mymodules\log_book(models.Model):
-#     _name = 'c:\users\phong\documents\101\odoo\mymodules\log_book.c:\users\phong\documents\101\odoo\mymodules\log_book'
+class LogBook(models.Model):
+    _name = 'log_book.profile'
+
+    name = fields.Char(string ="Name")
+    email = fields.Char(string = "Email")
+    phone = fields.Char(string ="Phone")
 #     _description = 'c:\users\phong\documents\101\odoo\mymodules\log_book.c:\users\phong\documents\101\odoo\mymodules\log_book'
 
 #     name = fields.Char()

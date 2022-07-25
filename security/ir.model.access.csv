@@ -1,2 +1,2 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_c:\users\phong\documents\101\odoo\mymodules\log_book_c:\users\phong\documents\101\odoo\mymodules\log_book,c:\users\phong\documents\101\odoo\mymodules\log_book.c:\users\phong\documents\101\odoo\mymodules\log_book,model_c:\users\phong\documents\101\odoo\mymodules\log_book_c:\users\phong\documents\101\odoo\mymodules\log_book,base.group_user,1,1,1,1
+log_book_user,Base User,model_log_book_profile,base.group_user,1,1,1,1
