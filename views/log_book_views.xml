@@ -1,22 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    <record id="view_log_book_form" model="ir.ui.view">
+    <record id="log_book_view_tree" model="ir.ui.view"> <!-- Tree -->
+        <field name="name">log.book.tree</field>
+        <field name="model">log.book</field>
+        <field name="arch" type="xml">
+            <tree string="Menu 1" multi_edit="1" sample="1">
+                <field name="sequence" widget="handle"/>
+                <field name="recipient_name" />
+                <field name="destination" />
+                <field name="barcode_number" />
+                <field name="weight" widget="many2one_tags" />
+                <field name="baht" />
+                <field name="satang" />
+                <field name="note" />
+            </tree>
+        </field>
+    </record>
+    <!-- <separator/> -->
+    <record id="log_book_view_form" model="ir.ui.view"> <!-- Form -->
         <field name="name">log.book.form</field>
         <field name="model">log.book</field>
         <field name="arch" type="xml">
             <form>
-                <!-- <group>
+                <sheet>
                     <group>
+                        <group>
+                            <field name="recipient_name" />
+                            <field name="barcode_number" />
+                            <field name="weight" />
+                        </group>
+                        <group>
+                            <field name="destination" />
+                            <field name="baht" />
+                            <field name="satang" />
+                        </group>
+                        <group>
+                            <field name="note"/>
+                        </group>    
                     </group>
-                    <group>
-                    </group>
-                </group> -->
+                </sheet>
             </form>
         </field>
     </record>
 
-    <record id="log_book_action" model="ir.actions.act_window">
+    <record id="log_book_view_form" model="ir.ui.view"> <!-- Form hiv -->
+        <field name="name">log.book.hiv.form</field>
+        <field name="model">log.book.hiv</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="unit_number" />
+                        </group>   
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="log_book_view_search" model="ir.ui.view"> <!-- Search -->
+        <field name="name">log.book.search</field>
+        <field name="model">log.book</field>
+        <field name="arch" type="xml">
+            <search string="Log Book">
+                <field name="recipient_name" />
+                <field name="barcode_number" />
+                <!-- <separator/> -->
+                <!-- <filter name="filter_create_date" date="create_date" />
+                <group expand="1" string="Group By">
+                   <filter string="Creation Date" name="creation_month" context="{'group_by':'create_date:month'}" help="Creation Date"/>
+                </group> -->
+            </search>
+        </field>
+    </record>
+
+    <record id="log_book_action" model="ir.actions.act_window"> <!-- Model ~ -->
         <field name="name">Log Book</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">log.book</field>
@@ -28,9 +88,22 @@
         </field>
     </record>
 
+    <record id="log_book_hiv_action" model="ir.actions.act_window"> <!-- Model hiv -->
+        <field name="name">Log Book HIV</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">log.book.hiv</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new quotation, the first step of a new sale!
+            </p>
+        </field>
+    </record>
+
     <!-- Top menu item -->
     <menuitem id="log_book_menu_root"
-        name="Log book"
+        name="Log Book"
+        web_icon="log_book,static/description/icon.png"
         sequence="99" />
 
     <menuitem id="log_book_menu1"
@@ -42,7 +115,7 @@
     <menuitem id="log_book_menu2"
         name="Menu 2"
         parent="log_book_menu_root"
-        
+        action="log_book_hiv_action"
         sequence="3" />
     
 </odoo>
