@@ -6,11 +6,11 @@
         <field name="model">log.book</field>
         <field name="arch" type="xml">
             <tree string="Menu 1" multi_edit="1" sample="1">
-                <field name="sequence" widget="handle"/>
+                <field name='sequence' widget='badge'/>
                 <field name="recipient_name" />
                 <field name="destination" />
                 <field name="barcode_number" />
-                <field name="weight" widget="many2one_tags" />
+                <field name="weight" />
                 <field name="baht" />
                 <field name="satang" />
                 <field name="note" />
