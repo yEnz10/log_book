@@ -1,5 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+    <record id="log_book_view_kanban" model="ir.ui.view">
+        <field name="name">log.book.kanban</field>
+        <field name="model">log.book</field>
+        <field name="arch" type="xml">
+            <kanban class="o_kanban_mobile">
+                <field name='id'/>
+                <field name="recipient_name" />
+                <field name="destination" />
+                <field name="barcode_number" />
+                <field name="weight" />
+                <field name="baht" />
+                <field name="satang" />
+                <field name="note" />
+                <templates>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="oe_kanban_global_click">
+                            <div class="oe_kanban_details">
+                                <ul>
+                                   <li>Recipient Name: <field name="recipient_name" /></li>
+                                   <li>Destination: <field name="destination" /></li>
+                                   <li>Note: <field name="note" /></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
 
     <record id="log_book_view_tree" model="ir.ui.view"> <!-- Tree -->
         <field name="name">log.book.tree</field>
@@ -44,22 +73,6 @@
         </field>
     </record>
 
-    <record id="log_book_view_form" model="ir.ui.view"> <!-- Form hiv -->
-        <field name="name">log.book.hiv.form</field>
-        <field name="model">log.book.hiv</field>
-        <field name="arch" type="xml">
-            <form>
-                <sheet>
-                    <group>
-                        <group>
-                            <field name="unit_number" />
-                        </group>   
-                    </group>
-                </sheet>
-            </form>
-        </field>
-    </record>
-
     <record id="log_book_view_search" model="ir.ui.view"> <!-- Search -->
         <field name="name">log.book.search</field>
         <field name="model">log.book</field>
@@ -83,19 +96,7 @@
         <field name="view_mode">tree,kanban,form</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
-                Create a new quotation, the first step of a new sale!
-            </p>
-        </field>
-    </record>
-
-    <record id="log_book_hiv_action" model="ir.actions.act_window"> <!-- Model hiv -->
-        <field name="name">Log Book HIV</field>
-        <field name="type">ir.actions.act_window</field>
-        <field name="res_model">log.book.hiv</field>
-        <field name="view_mode">tree,kanban,form</field>
-        <field name="help" type="html">
-            <p class="o_view_nocontent_smiling_face">
-                Create a new quotation, the first step of a new sale!
+                Create a new quotation, the first step of a new log book!
             </p>
         </field>
     </record>
