@@ -1,32 +1,45 @@
 # -*- coding: utf-8 -*-
-from odoo import models, fields, api
+from odoo import models, fields, api, _
 
 class LogBook(models.Model):
     _name = 'log.book'
     _description = 'Log Book'
-    _order = "sequence,id"
+    _order = 'id'
+    _rec_name = 'number'
+    
+    number = fields.Char(string='Log number', required=True, copy=False, readonly=True, 
+                         default=lambda self: _('New'))
+    type = fields.Many2many('log.book.type', string='Tyep')
+    receiver_line_ids = fields.One2many('log.book.receiver.lines', 'log_book_id',
+                                        string='Receiver Lines')
+    
+    @api.model
+    def create(self, vals):
+        if vals.get('number', _('New')) == _('New'):
+            vals['number'] = self.env['ir.sequence'].next_by_code('log.book') or _('New')
+        res = super(LogBook, self).create(vals)
+        return res
+    
+class LogBookType(models.Model):
+    _name = 'log.book.type'
+    _description = ''
 
     # required=True, translate=True
-    sequence = fields.Integer(string='No.', readonly=1)
-    # log_book_seq = fields.Integer(string='No.', readonly=1)
-    recipient_name = fields.Char(string='Recipient name', required=True)
+    code = fields.Char(string='Code')
+    name = fields.Char(string='Name')
+    color = fields.Integer(string='Color')
+
+# Master Log_Book_Type
+class LogBookReceiverLines(models.Model):
+    _name = 'log.book.receiver.lines'
+    _description = ''
+
+    # required=True, translate=True
+    log_book_id = fields.Many2one('log.book', string='Log Book')
+    name = fields.Char(string='Name', required=True)
     destination = fields.Char(string='Destination')
-    barcode_number = fields.Char(string='Barcode number (9 Digits)')
-    weight = fields.Char(string='Weight')
-    baht = fields.Char(string='Baht')
-    satang = fields.Char(string='Satang')
+    barcode = fields.Char(string='Barcode (9 digit)', size=9, required=True)
+    weight = fields.Float(string='Weight')
+    baht = fields.Integer(string='Baht')
+    satang = fields.Float(string='Satang')
     note = fields.Text(string='Note')
-
-    # @api.model
-    # def create(self, vals):
-    #     print("Log Book create vals ",vals)
-    #     vals['log_book_seq'] = self.env['ir.sequence'].next_by_code('log.book')
-    #     return super(LogBook, self).create(vals)
-    
-class LogBookHIV(models.Model):
-    _name = 'log.book.hiv'
-    _description = 'Log Book HIV'
-
-    # required=True, translate=True
-    unit_number = fields.Char(string='Unit number', required=True)
-    
