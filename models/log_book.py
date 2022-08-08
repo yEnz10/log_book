@@ -12,6 +12,7 @@ class LogBook(models.Model):
     type = fields.Many2many('log.book.type', string='Tyep')
     receiver_line_ids = fields.One2many('log.book.receiver.lines', 'log_book_id',
                                         string='Receiver Lines')
+    image = fields.Binary(string='Log brand')
     
     @api.model
     def create(self, vals):
