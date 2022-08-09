@@ -20,7 +20,7 @@
         'report/report.xml',
         'security/ir.model.access.csv',
         'views/log_book_views.xml',
-        # 'views/log_book_hiv_views.xml',
+        'views/log_book_hiv_views.xml',
         # 'views/views.xml',
         # 'views/templates.xml',
     ],

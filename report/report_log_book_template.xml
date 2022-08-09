@@ -14,12 +14,25 @@
                                     <span t-field="ty.name"/>
                                 </t> -->
                                 <!-- <span t-field="o.type[0].code"/> -->
+                                <t t-set="idx" t-value="0"/>
                                 <t t-foreach="request.env['log.book.type'].search([])" t-as="obj">
+                                    <t t-set="chked" t-value="False"/>
                                     <t t-foreach="o.type" t-as="ty">
-                                        <t t-if="ty.code">&#9745;</t>
-                                        <t t-else="not ty.code">&#9744;</t>
-                                        <span t-field="obj.name"/>
+                                        <t t-if="obj.code in ty.code">
+                                            <!-- <span>OK</span> -->
+                                            <t t-set="chked" t-value="True"/>
+                                        </t>
                                     </t>
+                                    <t t-if="chked == True">&#9745; <span t-field="obj.name"/></t>
+                                    <t t-if="chked == False">&#9744; <span t-field="obj.name"/></t>
+
+
+                                    <!-- <t t-if="o.type[idx].code == obj.code">&#9745; <span t-field="obj.name"/></t> -->
+                                    <!-- <t t-foreach="o.type" t-as="ty">
+                                        <t t-if="ty.code == obj.code">&#9745;</t>
+                                        <t t-else="">&#9744;</t>
+                                    </t> -->
+                                    
                                 </t>
                             </p>
                             <p class="text-center">จากศูนย์บริการโลหิตแห่งชาติ ใบอนุญาตพิเศษเลขที่........../..........ดังนี้</p>
@@ -40,6 +53,7 @@
                     </div>
                 </div>
                 <br/>
+                <br/> 
                 <t t-call="web.basic_layout">
                     <div class="page pt-5">
                         <t t-if="o.receiver_line_ids">
@@ -124,6 +138,19 @@
                     </div>
                 </t>
             </t>
+            <style type="text/css">
+            <![CDATA[
+                @font-face {
+                    font-family: 'sans-serif';
+                    // font-style: normal;
+                    // src: url('/log_book/static/src/fonts/Roboto-Regular.eot');
+                    // src: url('/log_book/static/src/fonts/Roboto-Regular.eot?#iefix') format('embedded-opentype'),
+                         // url('/log_book/static/src/fonts/Roboto-Regular.woff') format('woff'),
+                         // url('/log_book/static/src/fonts/Roboto-Regular.ttf') format('truetype'),
+                         // url('/log_book/static/src/fonts/Roboto-Regular.svg#Roboto') format('svg');
+                }
+            ]]>
+            </style>
         </t>
     </template>
 </odoo>
