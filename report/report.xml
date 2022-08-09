@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <record id="report_patient_card" model="ir.actions.report">
-        <field name="name">Report Log Book</field>
+        <field name="name">PDF Log book</field>
         <field name="model">log.book</field>
         <field name="report_type">qweb-pdf</field>
         <field name="report_name">log_book.report_log_book</field>
