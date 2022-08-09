@@ -14,12 +14,13 @@
     'version': '1.0',
     'depends': ['base'],
     'data': [
-        "data/log_book_data.xml",
+        'data/log_book_data.xml',
+        # 'report/log_book_header_footer.xml'
         'report/report_log_book_template.xml',
         'report/report.xml',
-        "security/ir.model.access.csv",
-        "views/log_book_views.xml",
-        # "views/log_book_hiv_views.xml",
+        'security/ir.model.access.csv',
+        'views/log_book_views.xml',
+        # 'views/log_book_hiv_views.xml',
         # 'views/views.xml',
         # 'views/templates.xml',
     ],
