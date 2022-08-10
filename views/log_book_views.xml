@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+    <!-- Top menu item -->
+    <menuitem name="National Blood Center"
+        id="log_book_root"
+        web_icon="log_book,static/description/icon.png"
+        sequence="1" 
+    />
+</odoo>
+<!-- <odoo>
     <record id="log_book_form" model="ir.ui.view"> <!-- Form -->
         <field name="name">log.book.form</field>
         <field name="model">log.book</field>
@@ -168,4 +176,4 @@
         <menuitem id="menu_action_incoterm_open" action="action_incoterms_tree" groups="account.group_account_manager" sequence="3"/>
     </menuitem> 
     -->
-</odoo>
+</odoo> -->
