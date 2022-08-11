@@ -4,120 +4,16 @@
     <menuitem name="National Blood Center"
         id="log_book_root"
         web_icon="log_book,static/description/icon.png"
+        action="log_book_action"
         sequence="1" 
     />
-</odoo>
-<!-- <odoo>
-    <record id="log_book_form" model="ir.ui.view"> <!-- Form -->
-        <field name="name">log.book.form</field>
-        <field name="model">log.book</field>
-        <field name="arch" type="xml">
-            <form>
-                <sheet>
-                    <field name="image" widget="image" class="oe_avatar" />
-                    <div class="oe_title">
-                        <h1>
-                            <field name="number" readonly="1"/>
-                        </h1>
-                    </div>
-                    <group>
-                        <!-- <group>
-                            <field name="number" />
-                        </group> -->
-                        <group>
-                            <field name="type" widget="many2many_checkboxes" />
-                        </group>
-                    </group>
-                    <notebook>
-                        <page string="Receiver" name="receiver">
-                            <field name="receiver_line_ids">
-                                <tree editable="bottom">
-                                    <field name="name" />
-                                    <field name="destination" />
-                                    <field name="barcode" />
-                                    <field name="weight" />
-                                    <field name="baht" sum="Total Baht"/>
-                                    <field name="satang" sum="Total Satang" />
-                                    <field name="note" />
-                                </tree>
-                                <form>
-                                    <group>
-                                        <group>
-                                            <field name="name" />
-                                            <field name="destination" />
-                                        </group>
-                                        <group>
-                                            <field name="barcode" />
-                                        </group>
-                                        <group>
-                                            <field name="weight" />
-                                        </group>
-                                        <group>
-                                            <field name="baht" />
-                                            <field name="satang" />
-                                        </group>
-                                        <group>
-                                            <field name="note" />
-                                        </group>
-                                    </group>
-                                </form>
-                            </field>
-                        </page>
-                    </notebook>
-                </sheet>
-            </form>
-        </field>
-    </record>
 
-    <record id="log_book_type_form" model="ir.ui.view"> <!-- Form -->
-        <field name="name">log.book.type.form</field>
-        <field name="model">log.book.type</field>
-        <field name="arch" type="xml">
-            <form>
-                <sheet>
-                    <group>
-                        <group>
-                            <field name="code" />
-                            <field name="name" />
-                        </group>
-                        <group>
-                            <field name="color" widget="color_picker" />
-                        </group>
-                    </group>
-                </sheet>
-            </form>
-        </field>
-    </record>
-
-    <record id="log_book_tree" model="ir.ui.view"> <!-- Tree Log Book -->
-        <field name="name">log.book.tree</field>
-        <field name="model">log.book</field>
-        <field name="arch" type="xml">
-            <tree>
-                <field name="number" />
-                <field name="type" widget="many2many_tags" options="{'color_field': 'color'}" />
-            </tree>
-        </field>
-    </record>
-
-    <record id="log_book_type_tree" model="ir.ui.view"> <!-- Tree ~ Master:(log book type) -->
-        <field name="name">log.book.tree</field>
-        <field name="model">log.book.type</field>
-        <field name="arch" type="xml">
-            <tree>
-                <field name="code" />
-                <field name="name" />
-                <field name="color" widget="color_picker" />
-            </tree>
-        </field>
-    </record>
-
-    <record id="log_book_action" model="ir.actions.act_window"> <!-- Model ~ -->
-        <field name="name">Log Book</field>
+    <!-- ใบฝากรวม -->
+    <record id="log_book_action" model="ir.actions.act_window"> 
+        <field name="name">ใบฝากรวม</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">log.book</field>
         <field name="view_mode">tree,form</field>
-        <!-- <field name="context">{'default_type': '1'}</field> -->
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
                 Create a new quotation, the first step of a new log book!
@@ -125,55 +21,14 @@
         </field>
     </record>
 
-    <record id="log_book_type_action" model="ir.actions.act_window"> <!-- Model ~ Master:(log book type) -->
-        <field name="name">Type</field>
-        <field name="type">ir.actions.act_window</field>
-        <field name="res_model">log.book.type</field>
-        <field name="view_mode">tree,form</field>
-        <field name="help" type="html">
-            <p class="o_view_nocontent_smiling_face">
-                Create a new quotation, the first step of a new log book type!
-            </p>
+    <record id="log_book_tree" model="ir.ui.view"> <!-- Tree ใบฝากรวม -->
+        <field name="name">log.book.tree</field>
+        <field name="model">log.book</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="postal_type" />
+                <field name="recipient_name" />
+            </tree>
         </field>
     </record>
-
-    <!-- Top menu item -->
-    <menuitem name="Log Book"
-        id="log_book_root"
-        web_icon="log_book,static/description/icon.png"
-        sequence="1" 
-    />
-
-    <menuitem name="Menu"
-        id="log_book_menu"
-        parent="log_book_root"
-        sequence="2"
-    />
-    
-    <menuitem name="Log book"
-        id="log_book_menu1"
-        parent="log_book_menu"
-        action="log_book_action"
-        sequence="1"
-    />
-
-    <menuitem name="Configuration"
-        id="log_book_configuration"
-        parent="log_book_root"
-        sequence="3"
-    />
-
-    <menuitem name="Type"
-        id="log_book_type_configuration"
-        parent="log_book_configuration"
-        action="log_book_type_action"
-        sequence="1"
-    />
-
-    <!-- 
-    <menuitem id="account_invoicing_menu" name="Invoicing" groups="account.group_account_invoice,account.group_account_readonly" sequence="1">
-        <menuitem id="menu_action_payment_term_form" action="action_payment_term_form" sequence="1"/>
-        <menuitem id="menu_action_incoterm_open" action="action_incoterms_tree" groups="account.group_account_manager" sequence="3"/>
-    </menuitem> 
-    -->
-</odoo> -->
+</odoo>

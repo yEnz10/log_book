@@ -1,7 +1,3 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_log_book,access.log.book,model_log_book,,1,1,1,1
 access_log_book_type,access.log.book.type,model_log_book_type,,1,1,1,1
-access_log_book_receiver_lines,access.log.book.receiver.lines,model_log_book_receiver_lines,,1,1,1,1
-
-access_log_book_hiv,access.log.book.hiv,model_log_book_hiv,,1,1,1,1
-access_log_book_hiv_lines,access.log.book.hiv.lines,model_log_book_hiv_lines,,1,1,1,1

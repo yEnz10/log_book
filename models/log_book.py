@@ -7,12 +7,20 @@ class LogBook(models.Model):
     # _order = 'id'
     # _rec_name = 'number'
 
-    # number = fields.Char(string='Log number', required=True, copy=False, readonly=True, 
+    # line_number = fields.Char(string='ที', required=True, copy=False, readonly=True, 
     # default=lambda self: _('New'))
-    
+
+    postal_type = fields.Many2one('log.book.postal.type', string='ประเภท')
+    recipient_name = fields.Char(string='นามผู้รับ', required=True)
+    destination = fields.Char(string='ปลายทาง')
+    barcode = fields.Char(string='Barcode (9 ตัวเลข)', size=9, required=True)
+    weight = fields.Float(string='น้ำหนัก')
+    satang = fields.Float(string='ค่าบริการ')
+    note = fields.Text(string='หมายเหตุ')
+
     # number = fields.Char(string='Log number', required=True, copy=False, readonly=True, 
     #                      default=lambda self: _('New'))
-    # type = fields.Many2many('log.book.type', string='Tyep')
+    
     # receiver_line_ids = fields.One2many('log.book.receiver.lines', 'log_book_id',
     #                                     string='Receiver Lines')
     # image = fields.Binary(string='Log brand')
@@ -24,14 +32,14 @@ class LogBook(models.Model):
     #     res = super(LogBook, self).create(vals)
     #     return res
     
-# class LogBookType(models.Model):
-#     _name = 'log.book.type'
-#     _description = ''
+class LogBookPostalType(models.Model):
+    _name = 'log.book.postal.type'
+    _description = ''
 
-#     # required=True, translate=True
-#     code = fields.Char(string='Code')
-#     name = fields.Char(string='Name')
-#     color = fields.Integer(string='Color')
+    # required=True, translate=True
+    code = fields.Char(string='Code')
+    name = fields.Char(string='Name')
+    color = fields.Integer(string='Color')
 
 # # Master Log_Book_Type
 # class LogBookReceiverLines(models.Model):
