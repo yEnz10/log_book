@@ -1,13 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- Top menu item -->
-    <menuitem name="National Blood Center"
-        id="log_book_root"
-        web_icon="log_book,static/description/icon.png"
-        action="log_book_action"
-        sequence="1" 
-    />
-
     <!-- ใบฝากรวม -->
     <record id="log_book_action" model="ir.actions.act_window"> 
         <field name="name">ใบฝากรวม</field>
@@ -21,14 +13,98 @@
         </field>
     </record>
 
+    <record id="log_book_postal_type_action" model="ir.actions.act_window"> <!-- Model ~ Master:(log book type) -->
+        <field name="name">ประเภทใบฝาก</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">log.book.postal.type</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new quotation, the first step of a new log book type!
+            </p>
+        </field>
+    </record>
+
     <record id="log_book_tree" model="ir.ui.view"> <!-- Tree ใบฝากรวม -->
         <field name="name">log.book.tree</field>
         <field name="model">log.book</field>
         <field name="arch" type="xml">
             <tree>
-                <field name="postal_type" />
+                <field name="create_date" />
+                <field name="postal_type" 
+                    decoration-success="postal_type == 'REG'"
+                    decoration-info="postal_type == 'PCP'"
+                    widget="badge"
+                />
                 <field name="recipient_name" />
+                <field name="destination" />
+                <field name="barcode" />
+                <field name="weight" sum="น้ำหนักรวม" />
+                <field name="service_charge" sum="รวมค่าบริการ" />
+                <field name="note" />
             </tree>
         </field>
     </record>
+
+    <record id="log_book_postal_type_tree" model="ir.ui.view"> <!-- Tree ~ Master:(log book type) -->
+        <field name="name">log.book.postal.type.tree</field>
+        <field name="model">log.book.postal.type</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="code" />
+                <field name="name" />
+                <field name="color" widget="color_picker" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="log_book_form" model="ir.ui.view"> <!-- Form -->
+        <field name="name">log.book.form</field>
+        <field name="model">log.book</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="d-inline p-2"><field name="create_date"/></div>/
+                    <div class="d-inline p-2"><field name="number" readonly="1"/></div>
+                    <group>
+                        <group>
+                            <field name="postal_type" widget='radio' options="{'horizontal': true}" />
+                        </group>
+                        <group>
+                            <field name="barcode" />
+                        </group>
+                        <group>
+                            <field name="recipient_name" />
+                            <field name="destination" />
+                            <field name="weight" />
+                            <field name="service_charge" />
+                            <field name="note" />
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="log_book_postal_type_form" model="ir.ui.view"> <!-- Form ~ Master:(log book type) -->
+        <field name="name">log.book.postal.type.form</field>
+        <field name="model">log.book.postal.type</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="code" />
+                            <field name="name" />
+                        </group>
+                        <group>
+                            <field name="color" widget="color_picker" />
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    
 </odoo>

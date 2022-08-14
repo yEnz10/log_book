@@ -1,3 +1,4 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_log_book,access.log.book,model_log_book,,1,1,1,1
-access_log_book_type,access.log.book.type,model_log_book_type,,1,1,1,1
+access_log_book_postal_type,access.log.book.postal.type,model_log_book_postal_type,,1,1,1,1
+access_log_book_hiv,access.log.book.hiv,model_log_book_hiv,,1,1,1,1

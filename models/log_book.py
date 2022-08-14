@@ -1,35 +1,43 @@
 # -*- coding: utf-8 -*-
+import re
 from odoo import models, fields, api, _
-
+from datetime import datetime, date
 class LogBook(models.Model):
     _name = 'log.book'
     _description = 'Log Book'
     # _order = 'id'
-    # _rec_name = 'number'
+    _rec_name = 'number'
 
     # line_number = fields.Char(string='ที', required=True, copy=False, readonly=True, 
     # default=lambda self: _('New'))
-
-    postal_type = fields.Many2one('log.book.postal.type', string='ประเภท')
+    create_date = fields.Date(string='วันที่', required=True, default=date.today())
+    number = fields.Char(string='Log number', required=True, copy=False, readonly=True, 
+                         default=lambda self: _('New'))
+    postal_type = fields.Many2one('log.book.postal.type', string='ประเภท', required=True)
     recipient_name = fields.Char(string='นามผู้รับ', required=True)
     destination = fields.Char(string='ปลายทาง')
     barcode = fields.Char(string='Barcode (9 ตัวเลข)', size=9, required=True)
     weight = fields.Float(string='น้ำหนัก')
-    satang = fields.Float(string='ค่าบริการ')
+    service_charge = fields.Float(string='ค่าบริการ')
     note = fields.Text(string='หมายเหตุ')
 
-    # number = fields.Char(string='Log number', required=True, copy=False, readonly=True, 
-    #                      default=lambda self: _('New'))
+    
     
     # receiver_line_ids = fields.One2many('log.book.receiver.lines', 'log_book_id',
     #                                     string='Receiver Lines')
     # image = fields.Binary(string='Log brand')
     
+    @api.model
+    def create(self, vals):
+        if vals.get('number', _('New')) == _('New'):
+            vals['number'] = self.env['ir.sequence'].next_by_code('log.book') or _('New')
+            
+        res = super(LogBook, self).create(vals)
+        return res
+    
     # @api.model
-    # def create(self, vals):
-    #     if vals.get('number', _('New')) == _('New'):
-    #         vals['number'] = self.env['ir.sequence'].next_by_code('log.book') or _('New')
-    #     res = super(LogBook, self).create(vals)
+    # def _create_at_log(self, vals):
+    #     res =  datetime.year()
     #     return res
     
 class LogBookPostalType(models.Model):
