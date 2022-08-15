@@ -35,10 +35,29 @@
         sequence="3"
     />
 
+    <menuitem name="ใบฝากรวม"
+        id="log_book_1_config"
+        parent="log_book_configuration"
+        sequence="1"
+    />
+
     <menuitem name="ประเภทใบฝาก"
         id="log_book_postal_type_configuration"
-        parent="log_book_configuration"
+        parent="log_book_1_config"
         action="log_book_postal_type_action"
+        sequence="1"
+    />
+
+    <menuitem name="การติดตามผู้บริจาคโลหิตเฉพาะส่วนและ HIV repeat reactive (2) ที่พบปัญหาผลการตรวจผิดปกติ"
+        id="log_book_2_config"
+        parent="log_book_configuration"
+        sequence="2"
+    />
+
+    <menuitem name="ข้อมูลผู้แจ้ง"
+        id="log_book_hiv_informer_configuration"
+        parent="log_book_2_config"
+        action="log_book_hiv_informer_action"
         sequence="1"
     />
 </odoo>
