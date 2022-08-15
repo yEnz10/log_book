@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from odoo import models, fields, api, _
-from datetime import datetime, date
+from datetime import datetime, date, time
 
 class LogBookHIV(models.Model):
     _name = 'log.book.hiv'
@@ -10,7 +10,16 @@ class LogBookHIV(models.Model):
     
     # number = fields.Char(string='Form number', required=True, copy=False, readonly=True, 
     #                      default=lambda self: _('New'))
-    create_date = fields.Date(string='Create date', default=date.today())
+    create_date = fields.Date(string='วันที่', default=date.today())
+    unit_number = fields.Char(string='Unit number', required=True)
+    test_res_problem = fields.Char(string='ผลการตรวจที่พบปัญหา')
+    call_number = fields.Char(string='เบอร์โทรศัพท์')
+    contactable = fields.Char(string='ติดต่อได้')
+    uncontactable = fields.Char(string='ติดต่อไม่ได้')
+    call_datetime = fields.Datetime(string='วันเวลาที่โทร', default=datetime.today())
+    next_time = fields.Datetime(string='เวลานัดครั้งถัดไป', default=datetime.today())
+    informer = fields.Char(string='ผู้แจ้ง')
+    note = fields.Text(string='Note')
     # hiv_line_ids = fields.One2many('log.book.hiv.lines', 'log_book_hiv_id',
     #                                     string='HIV Lines')
     

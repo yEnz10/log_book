@@ -9,4 +9,8 @@
         <field name="binding_model_id" ref="model_log_book"/>
         <field name="binding_type">report</field>
     </record>
+
+    <record id="log_book.report_deposit_sum" model="ir.actions.report">
+        <field name="binding_model_id" eval="False" />
+    </record>
 </odoo>

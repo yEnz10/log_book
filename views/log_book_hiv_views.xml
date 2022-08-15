@@ -13,5 +13,24 @@
             </p>
         </field>
     </record>
+
+    <record id="log_book_hiv_tree" model="ir.ui.view"> <!-- Tree HIV repeat reactive (2) ที่พบปัญหา -->
+        <field name="name">log.book.hiv.tree</field>
+        <field name="model">log.book.hiv</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="create_date" />
+                <field name="unit_number" />
+                <field name="test_res_problem" />
+                <field name="call_number" />
+                <field name="contactable" />
+                <field name="uncontactable" />
+                <field name="call_datetime" />
+                <field name="next_time" />
+                <field name="informer" />
+                <field name="note" />
+            </tree>
+        </field>
+    </record>
 </odoo>
 
