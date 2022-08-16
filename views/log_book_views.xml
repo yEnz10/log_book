@@ -31,7 +31,13 @@
         <field name="arch" type="xml">
             <tree>
                 <header>
-                    <button name="action_print_pdf" string=" Print ใบฝากรวม(PDF)" class="btn-primary" type="object" icon="fa-print"/>
+                    <button 
+                    name="action_print_pdf" 
+                    string=" Print ใบฝากรวม (PDF)" 
+                    class="btn-primary" 
+                    type="object" 
+                    icon="fa-print"
+                    />
                 </header>
                 <field name="create_date" />
                 <field name="postal_type" 
@@ -106,6 +112,34 @@
                     </group>
                 </sheet>
             </form>
+        </field>
+    </record>
+
+    <record id="log_book_search" model="ir.ui.view">
+        <field name="name">log.book.search</field>
+        <field name="model">log.book</field>
+        <field name="arch" type="xml">
+            <search string="Patients">
+                <field name="create_date"/>
+                <field name="postal_type"/>
+                <field name="recipient_name"/>
+                <separator/>
+                <filter string="ประเภท: ลงทะเบียน" name="name_reg" domain="[('postal_type', '=', 'ลงทะเบียน')]"/>
+                <filter string="ประเภท: พัสดุไปรษณีย์" name="name_pcp" domain="[('postal_type', '&lt;=', 'พัสดุไปรษณีย์')]"/>
+                <filter string="ประเภท: EMS (ไปรษณีย์ด่วนพิเศษ)" name="name_ems" domain="[('postal_type', '=', 'EMS (ไปรษณีย์ด่วนพิเศษ)')]"/>
+                <separator/>
+                <filter string="บันทึกของวันนี้" name="create_date" domain="[('create_date', '>=', context_today().strftime('%Y-%m-%d'))]"/>
+                <separator/>
+                <filter string="บันทึกย้อนหลัง 7 วัน" name="seven_day_filters" domain="[('create_date', '>=', (context_today() + datetime.timedelta(-6)).strftime('%Y-%m-%d'))]"/>
+                <!-- <filter string="Male" name="male" domain="[('gender', '=', 'male')]"/>
+                <filter string="Female" name="female" domain="[('gender', '=', 'female')]"/>
+                <filter string="Others" name="other" domain="[('gender', '=', 'other')]"/> -->
+                <!-- <group expand="1" string="Group By">
+                    <filter string="Gender" name="gender" context="{'group_by':'gender'}"/>
+                    <filter string="Patient Name" name="patient_name" context="{'group_by':'name'}"/>
+                    <filter string="Responsible" name="responsible_id" context="{'group_by':'responsible_id'}"/>
+                </group> -->
+            </search>
         </field>
     </record>
     

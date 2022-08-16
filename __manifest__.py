@@ -17,6 +17,7 @@
         'security/ir.model.access.csv',
         'data/log_book_data.xml',
         'data/log_book_master_data.xml',
+        "views/assets.xml",
         # 'reports/log_book_header_footer.xml'
         'views/log_book_views.xml',
         'views/log_book_hiv_views.xml',

@@ -33,9 +33,9 @@ class LogBookHIV(models.Model):
 class LogBookHIVInformer(models.Model):
     _name = 'log.book.hiv.informer'
     _description = ''
-    _rec_name = 'fullname'
+    _rec_name = 'full_name'
     
-    code = fields.Char(string='Code')
-    fullname = fields.Char(string='Fullname')
+    code = fields.Char(string='รหัส')
+    full_name = fields.Char(string='ชื่อ - นามสกุล')
     email = fields.Char('Email', required=True)
-    phone = fields.Char(string='Phone', size=12)
+    phone = fields.Char(string='เบอร์โทร', size=12)

@@ -5,12 +5,12 @@ from datetime import datetime, date
 class LogBook(models.Model):
     _name = 'log.book'
     _description = 'Log Book'
-    # _order = 'id'
+    _order = 'create_date desc'
     _rec_name = 'number'
 
     # line_number = fields.Char(string='ที', required=True, copy=False, readonly=True, 
     # default=lambda self: _('New'))
-    create_date = fields.Date(string='วันที่', required=True, default=date.today())
+    create_date = fields.Date(string='วันที่', required=True, readonly=True, default=date.today())
     number = fields.Char(string='Log number', required=True, copy=False, readonly=True, 
                          default=lambda self: _('New'))
     postal_type = fields.Many2one('log.book.postal.type', string='ประเภท', required=True)
@@ -35,7 +35,6 @@ class LogBook(models.Model):
         res = super(LogBook, self).create(vals)
         return res
     
-    # @api.multi
     def action_print_pdf(self):
         # print("_print_pdf==>", self, type(self))
         print('LOG==========================================================')
@@ -45,15 +44,6 @@ class LogBook(models.Model):
         print('END==========================================================')
         # print('vals================>', self['number'], type(self['number']))
         # return self.env.ref('log_book.report_deposit_sum').report_action(self)
-        # return {
-        # 'view_type': 'form',
-        # 'view_mode': 'form',
-        # 'res_model': 'your.model.name',
-        # 'views': [(False,'form')],
-        # 'type': 'ir.actions.act_window',
-        # 'target': 'new',
-        # 'context': {},
-        # }
     # @api.model
     # def _create_at_log(self, vals):
     #     res =  datetime.year()
@@ -62,7 +52,7 @@ class LogBook(models.Model):
 class LogBookPostalType(models.Model):
     _name = 'log.book.postal.type'
     _description = ''
-
+    _rec_name = 'name'
     # required=True, translate=True
     code = fields.Char(string='Code')
     name = fields.Char(string='Name')

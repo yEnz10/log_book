@@ -52,7 +52,9 @@
         <field name="arch" type="xml">
             <tree>
                 <field name="code" />
-                <field name="fullname" />
+                <field name="full_name" />
+                <field name="email" />
+                <field name="phone" />
             </tree>
         </field>
     </record>
