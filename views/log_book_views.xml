@@ -30,6 +30,9 @@
         <field name="model">log.book</field>
         <field name="arch" type="xml">
             <tree>
+                <header>
+                    <button name="action_print_pdf" string=" Print ใบฝากรวม(PDF)" class="btn-primary" type="object" icon="fa-print"/>
+                </header>
                 <field name="create_date" />
                 <field name="postal_type" 
                     decoration-success="postal_type == 'REG'"

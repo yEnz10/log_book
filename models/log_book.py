@@ -35,6 +35,25 @@ class LogBook(models.Model):
         res = super(LogBook, self).create(vals)
         return res
     
+    # @api.multi
+    def action_print_pdf(self):
+        # print("_print_pdf==>", self, type(self))
+        print('LOG==========================================================')
+        for rec in self:
+            print('rec==============>', rec.postal_type.code)
+
+        print('END==========================================================')
+        # print('vals================>', self['number'], type(self['number']))
+        # return self.env.ref('log_book.report_deposit_sum').report_action(self)
+        # return {
+        # 'view_type': 'form',
+        # 'view_mode': 'form',
+        # 'res_model': 'your.model.name',
+        # 'views': [(False,'form')],
+        # 'type': 'ir.actions.act_window',
+        # 'target': 'new',
+        # 'context': {},
+        # }
     # @api.model
     # def _create_at_log(self, vals):
     #     res =  datetime.year()
