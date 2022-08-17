@@ -4,6 +4,7 @@
         <template id="assets_backend" name="tree_view_header_buttons_assets" inherit_id="web.assets_backend">
             <xpath expr="." position="inside">
                 <script type="text/javascript" src="log_book/static/src/js/list_controller.js"></script>
+                <script type="text/javascript" src="log_book/static/src/js/tree_view_button.js"></script>
             </xpath>
         </template>
     </data>

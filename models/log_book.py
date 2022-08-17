@@ -36,14 +36,15 @@ class LogBook(models.Model):
         return res
     
     def action_print_pdf(self):
+        print('LOG==========================================================', self)
+        return self.env.ref('log_book.report_deposit_sum').report_action(self)
         # print("_print_pdf==>", self, type(self))
-        print('LOG==========================================================')
-        for rec in self:
-            print('rec==============>', rec.postal_type.code)
+        # print('LOG==========================================================')
+        # for rec in self:
+        #     print('rec==============>', rec.postal_type.code)
 
-        print('END==========================================================')
+        # print('END==========================================================')
         # print('vals================>', self['number'], type(self['number']))
-        # return self.env.ref('log_book.report_deposit_sum').report_action(self)
     # @api.model
     # def _create_at_log(self, vals):
     #     res =  datetime.year()

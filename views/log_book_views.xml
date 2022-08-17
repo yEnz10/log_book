@@ -32,11 +32,11 @@
             <tree>
                 <header>
                     <button 
-                    name="action_print_pdf" 
-                    string=" Print ใบฝากรวม (PDF)" 
-                    class="btn-primary" 
-                    type="object" 
-                    icon="fa-print"
+                        name="action_print_pdf" 
+                        string=" Print ใบฝากรวม (PDF)" 
+                        class="btn-primary" 
+                        type="object" 
+                        icon="fa-print"
                     />
                 </header>
                 <field name="create_date" />
