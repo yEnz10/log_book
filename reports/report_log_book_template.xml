@@ -2,36 +2,120 @@
 <odoo>
     <template id="report_log_book">
         <t t-call="web.html_container">
-            <t t-foreach="docs" t-as="o">
-                <div class="header" style="font-family: 'monospace';">
-                    <div class="row pt-5">
-                        <div class="col-2"/>
-                        <div class="col-8">
-                            <p class="text-center"><b>ใบรับฝากรวม</b></p>
-                            <p class="text-center">ศป./ศฝ./ปณ..........สาขา..........</p>
-                            <p class="text-center">ได้รับฝากไปรษณีย์ ประเภท<![CDATA[&nbsp;]]>
-                                <t t-set="idx" t-value="0"/>
-                                <t t-foreach="request.env['log.book.postal.type'].search([])" t-as="obj">
-                                    <t t-set="chked" t-value="False"/>
-                                    <t t-foreach="o.postal_type" t-as="ty">
-                                        <t t-if="obj.code in ty.code">
-                                            <t t-set="chked" t-value="True"/>
-                                        </t>
-                                    </t>
-                                    <t t-if="chked == True">&#9745; <span t-field="obj.name"/></t>
-                                    <t t-if="chked == False">&#9744; <span t-field="obj.name"/></t>
+            <t t-set="pt_code" t-value="docs.postal_type[0].code"/> 
+            <div class="header" style="font-family: 'monospace';">
+                <div class="row pt-5">
+                    <div class="col-2"/>
+                    <div class="col-8">
+                        <p class="text-center"><b>ใบรับฝากรวม</b></p>
+                        <p class="text-center">ศป./ศฝ./ปณ..........สาขา..........</p>
+                        <p class="text-center">ได้รับฝากไปรษณีย์ ประเภท<![CDATA[&nbsp;]]>
+                            <t t-foreach="request.env['log.book.postal.type'].search([])" t-as="obj">
+                                <t t-set="chked" t-value="False"/>
+                                <t t-if="obj.code in pt_code">
+                                    <t t-set="chked" t-value="True"/>
                                 </t>
-                            </p>
-                            <p class="text-center">จากศูนย์บริการโลหิตแห่งชาติ ใบอนุญาตพิเศษเลขที่........../..........ดังนี้</p>
+                                <t t-if="chked == True">&#9745; <span t-field="obj.name"/></t>
+                                <t t-if="chked == False">&#9744; <span t-field="obj.name"/></t>
+                            </t>
+                        </p>
+                        <p class="text-center">จากศูนย์บริการโลหิตแห่งชาติ ใบอนุญาตพิเศษเลขที่........../..........ดังนี้</p>
+                    </div>
+                    <div class="col-2">
+                        <p class="text-right py-0 my-0">ปณ??</p>
+                        <div class="text-center">
+                            <img class="rounded rounded-circle border border-dark py-0 my-0"
+                                height="100" border="1" width="100"/>
                         </div>
-                        <div class="col-2">
-                            <p class="text-right py-0 my-0">ปณ??</p>
-                            <div class="text-center">
-                                <img class="rounded rounded-circle border border-dark py-0 my-0"
-                                    height="100" border="1" width="100"/>
-                            </div>
-                            <p class="text-center"> ตราประจำ</p>
-                        </div>
+                        <p class="text-center"> ตราประจำ</p>
+                    </div>
+                </div>
+            </div>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <t t-call="web.basic_layout">
+                <div class="page pt-5">
+                    <div class="row">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th class="text-center" colspan="1" rowspan="2">ที่</th>
+                                    <th class="text-center" colspan="1" rowspan="2">นามผู้รับ</th>
+                                    <th class="text-center" colspan="1" rowspan="2">ปลายทาง</th>
+                                    <th class="text-center" colspan="1" rowspan="2">เลขที่ Barcode (ตัวเลขใส่ให้ครบ 9 ตัว)</th>
+                                    <th class="text-center" colspan="1" rowspan="2">น้ำหนัก</th>
+                                    <th class="text-center" colspan="2" rowspan="1">ค่าบริการ</th>
+                                    <th class="text-center" colspan="1" rowspan="2">หมายเหตุ</th>
+                                </tr>
+                                <tr>
+                                    <th class="text-center" colspan="1" rowspan="1">บาท</th>
+                                    <th class="text-center" colspan="1" rowspan="1">ส.ต.</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-set="at_number" t-value="0"/>
+                                <t t-set="tt_baht" t-value="0"/>
+                                <t t-set="tt_satang" t-value="0"/>
+                                <t t-foreach="docs" t-as="line">
+                                    <t t-set="at_number" t-value="at_number + 1"/>
+                                    <!-- <t t-set="tt_baht" t-value="tt_baht + line.baht"/> -->
+                                    <!-- <t t-set="tt_satang" t-value="tt_satang + line.satang"/> -->
+                                    <tr>
+                                        <td>
+                                            <p><t t-esc="at_number"/></p>
+                                        </td>
+                                        <td>
+                                            <p t-field="line.recipient_name"/>
+                                        </td>
+                                        <td>
+                                            <p t-field="line.destination"/>
+                                        </td>
+                                        <td>
+                                            <p t-field="line.barcode"/>
+                                        </td>
+                                        <td>
+                                            <p t-field="line.weight"/>
+                                        </td>
+                                        <td>
+                                            
+                                        </td>
+                                        <td>
+                                            
+                                        </td>
+                                        <td>
+                                            <p t-field="line.note"/>
+                                        </td>
+                                    </tr>
+                                </t>
+                                <!-- <tr>
+                                    <td colspan="2">
+                                        <strong>รวม</strong>
+                                    </td>
+                                    <td>
+                                        <t t-esc="at_number"/>
+                                    </td>
+                                    <td>
+                                        <strong>ฉบับ/ห่อ</strong>
+                                    </td>
+                                    <td>
+                                        <strong>รวม</strong>
+                                    </td>
+                                    <td>
+                                        <t t-esc="tt_baht"/>
+                                    </td>
+                                    <td>
+                                        <t t-esc="tt_satang"/>
+                                    </td>
+                                    <td>
+                                    </td>
+                                </tr> -->
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </t>

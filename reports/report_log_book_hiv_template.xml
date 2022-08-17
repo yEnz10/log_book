@@ -2,8 +2,82 @@
 <odoo>
     <template id="report_log_book_hiv">
         <t t-call="web.html_container">
-            <!-- <t t-foreach="docs" t-as="o">
-            </t> -->
+            <!-- <p class="text-center"><b>การติดตามผู้บริจาคโลหิตเฉพาะส่วนและ HIV repeat reactive (2) ที่พบปัญหาผลการตรวจผิดปกติ</b></p> -->
+            <br/>
+            <br/>
+            <t t-call="web.basic_layout">
+                <div class="page pt-5">
+                    <div class="row">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th class="text-center" colspan="1" rowspan="2">วันที่</th>
+                                    <th class="text-center" colspan="1" rowspan="2">ลำดับที่</th>
+                                    <th class="text-center" colspan="1" rowspan="2">Unit number</th>
+                                    <th class="text-center" colspan="1" rowspan="2">ผลการตรวจที่พบปัญหา</th>
+                                    <th class="text-center" colspan="1" rowspan="2">เบอร์โทรศัพท์</th>
+                                    <th class="text-center" colspan="2" rowspan="1">การแจ้งทางโทรศัพท์</th>
+                                    <th class="text-center" colspan="1" rowspan="2">วันเวลาที่โทร</th>
+                                    <th class="text-center" colspan="1" rowspan="2">เวลา</th>
+                                    <th class="text-center" colspan="1" rowspan="2">เวลานัดครั้งถัดไป</th>
+                                    <th class="text-center" colspan="1" rowspan="2">ผู้แจ้ง</th>
+                                    <th class="text-center" colspan="1" rowspan="2">หมายเหตุ</th>
+                                </tr>
+                                <tr>
+                                    <th class="text-center" colspan="1" rowspan="1">ติดต่อได้</th>
+                                    <th class="text-center" colspan="1" rowspan="1">ติดต่อไม่ได้</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-set="at_number" t-value="0"/>
+                                <t t-set="tt_baht" t-value="0"/>
+                                <t t-set="tt_satang" t-value="0"/>
+                                <t t-foreach="docs" t-as="line">
+                                    <t t-set="at_number" t-value="at_number + 1"/>
+                                    <tr>
+                                        <td>
+                                            <p t-field="line.create_date"/>
+                                        </td>
+                                        <td>
+                                            <p><t t-esc="at_number"/></p>
+                                        </td>
+                                        <td>
+                                            <p t-field="line.unit_number"/>
+                                        </td>
+                                        <td>
+                                            <p t-field="line.test_res_problem"/>
+                                        </td>
+                                        <td>
+                                            <p t-field="line.call_number"/>
+                                        </td>
+                                        <td>
+                                            <p t-field="line.contactable"/>
+                                        </td>
+                                        <td>
+                                            <p t-field="line.uncontactable"/>
+                                        </td>
+                                        <td>
+                                            <p></p>
+                                        </td>
+                                        <td>
+                                            <p></p>
+                                        </td>
+                                        <td>
+                                            <p></p>
+                                        </td>
+                                        <td>
+                                            <p t-field="line.informer"/>
+                                        </td>
+                                        <td>
+                                            <p t-field="line.note"/>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </t>
         </t>
     </template>
 </odoo>

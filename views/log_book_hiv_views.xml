@@ -32,6 +32,15 @@
         <field name="model">log.book.hiv</field>
         <field name="arch" type="xml">
             <tree>
+                <!-- <header>
+                    <button 
+                        name="action_print_pdf_hiv" 
+                        string=" Print การตรวจผิดปกติ (PDF)" 
+                        class="btn-primary" 
+                        type="object" 
+                        icon="fa-print"
+                    />
+                </header> -->
                 <field name="create_date" />
                 <field name="unit_number" />
                 <field name="test_res_problem" />

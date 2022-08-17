@@ -2,6 +2,7 @@
 import re
 from odoo import models, fields, api, _
 from datetime import datetime, date
+from odoo.exceptions import ValidationError
 class LogBook(models.Model):
     _name = 'log.book'
     _description = 'Log Book'
@@ -36,8 +37,33 @@ class LogBook(models.Model):
         return res
     
     def action_print_pdf(self):
-        print('LOG==========================================================', self)
+        temp_code = ''
+        for rec in self:
+            if not temp_code:
+                temp_code = rec.postal_type.code
+                
+            if temp_code != rec.postal_type.code:
+                raise ValidationError(_("เลือกประเภทใบฝากได้เพียง 1 ประเภทที่ใช้ในการพิมพ์ใบฝากรวม"))
+        
         return self.env.ref('log_book.report_deposit_sum').report_action(self)
+        
+        # print('LOG==========================================================', self)
+        # view = self.env.ref('sh_message.shmessage_wizard')
+        # view_id = view and view.id or False
+        # context = dict(self._context or {})
+        # context['message'] = "Tasks create successfully"
+        # return {
+        #     'name': 'Success',
+        #     'type': 'ir.actions.act_window',
+        #     'view_type': 'form',
+        #     'view_model': 'form',
+        #     'res_model': 'sh.message.wizard',
+        #     'views': [(view.id, 'form')],
+        #     'view_id': view.id,
+        #     'target': 'new',
+        #     'context': context,
+        # }
+        # return self.env.ref('log_book.report_deposit_sum').report_action(self)
         # print("_print_pdf==>", self, type(self))
         # print('LOG==========================================================')
         # for rec in self:

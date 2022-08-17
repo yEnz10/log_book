@@ -19,16 +19,20 @@ class LogBookHIV(models.Model):
     call_datetime = fields.Datetime(string='วันเวลาที่โทร', default=datetime.today())
     next_time = fields.Datetime(string='เวลานัดครั้งถัดไป', default=datetime.today())
     informer = fields.Many2one('log.book.hiv.informer', string='ผู้แจ้ง', required=True)
-    note = fields.Text(string='Note')
+    note = fields.Text(string='หมายเหตุ')
     # hiv_line_ids = fields.One2many('log.book.hiv.lines', 'log_book_hiv_id',
     #                                     string='HIV Lines')
     
-    # @api.model
-    # def create(self, vals):
+    @api.model
+    def create(self, vals):
     #     if vals.get('number', _('New')) == _('New'):
     #         vals['number'] = self.env['ir.sequence'].next_by_code('log.book.hiv') or _('New')
     #     res = super(LogBookHIV, self).create(vals)
-    #     return res
+        return 
+    
+    def action_print_pdf_hiv(self):
+        print('==============================================================>', self.env)
+        return self.env.ref('log_book.report_log_book_hiv').report_action(self)
 
 class LogBookHIVInformer(models.Model):
     _name = 'log.book.hiv.informer'
