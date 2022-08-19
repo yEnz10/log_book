@@ -31,8 +31,10 @@ class LogBookHIV(models.Model):
         return 
     
     def action_print_pdf_hiv(self):
-        print('==============================================================>', self.env)
-        return self.env.ref('log_book.report_log_book_hiv').report_action(self)
+        print('action_print_pdf ===========================================================>')
+        action = self.env.ref('log_book.report_log_book_hiv').sudo()
+        print('end action_print_pdf =======================================================>')
+        return action.report_action(self)
 
 class LogBookHIVInformer(models.Model):
     _name = 'log.book.hiv.informer'

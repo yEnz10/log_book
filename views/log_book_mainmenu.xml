@@ -2,7 +2,7 @@
 <odoo>
     
     <!-- Top menu item -->
-    <menuitem name="National Blood Center"
+    <menuitem name="Log Book"
         id="log_book_root"
         web_icon="log_book,static/description/icon.png"
         action="log_book_action"

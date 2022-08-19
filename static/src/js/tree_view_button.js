@@ -1,5 +1,6 @@
 odoo.define('tree_view_header_buttons_assets.tree_view_button', function (require){
     "use strict";
+    console.log('require=', require);
     var ajax = require('web.ajax');
     var ListController = require('web.ListController');
     var rpc = require('web.rpc')
@@ -20,8 +21,8 @@ odoo.define('tree_view_header_buttons_assets.tree_view_button', function (requir
                         method: 'action_print_pdf',
                         args: [self.getSelectedIds()],
                     }).then(function(res){
-                        console.log(res)
-                        self.reload();
+                        // console.log(res)
+                        // self.reload();
                     })
                 });
             }
