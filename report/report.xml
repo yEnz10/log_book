@@ -1,22 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- <record id="paper_format_deposit_gather" model="report.paperformat">
-    </record> -->
+    <record id="paperformat_deposit_gather" model="report.paperformat">
+        <field name="name">ใบฝากรวม (PDF)(Paper Format)</field>
+        <field name="default" eval="False"/>
+        <field name="format">custom</field>
+        <field name="page_width">215</field>
+        <field name="page_height">280</field>
+        <!-- <field name="orientation">Portrait</field>
+        <field name="margin_top">73</field>
+        <field name="margin_bottom">23</field>
+        <field name="margin_left">5</field>
+        <field name="margin_right">10</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">68</field>
+        <field name="dpi">90</field> -->
+    </record>
 
     <record id="report_deposit_gather" model="ir.actions.report">
         <field name="name">ใบฝากรวม (PDF)</field>
         <field name="model">log.book</field>
-        <field name="paperformat_id">1</field>
         <field name="report_type">qweb-pdf</field>
         <field name="report_name">log_book.report_log_book</field>
         <field name="report_file">log_book.report_log_book</field>
         <field name="binding_model_id" ref="model_log_book"/>
         <field name="binding_type">report</field>
+        <field name="paperformat_id" ref="log_book.paperformat_deposit_gather"/>
     </record>
 
     <record id="log_book.report_deposit_gather" model="ir.actions.report">
         <field name="binding_model_id" eval="False" />
     </record>
+
+   
 
     <!-- <record id="paperformat_log_book_hiv_landscape" model="report.paperformat">
         <field name="name">PDF HIV Landscape</field>
