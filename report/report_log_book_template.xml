@@ -2,11 +2,33 @@
 <odoo>
     <template id="report_log_book">
         <t t-call="web.html_container">
-                <!-- <t t-set="data" t-value="data"/> -->
-                <!-- <p><t t-esc="data.ptt_code"/></p> -->
+                 <t t-set="pt_code" t-value="docs.postal_type[0].code"/> 
                 <div class="header">
                     <div class="row">
-			            Header
+                        <div class="col-2"/>
+                        <div class="col-8">
+                            <p class="text-center"><b>ใบรับฝากรวม</b></p>
+                            <p class="text-center">ศป./ศฝ./ปณ..........สาขา..........</p>
+                            <p class="text-center">ได้รับฝากไปรษณีย์ ประเภท<![CDATA[&nbsp;]]>
+                                <t t-foreach="request.env['log.book.postal.type'].search([])" t-as="obj">
+                                    <t t-set="chked" t-value="False"/>
+                                    <t t-if="obj.code in pt_code">
+                                        <t t-set="chked" t-value="True"/>
+                                    </t>
+                                    <t t-if="chked == True">&#9745; <span t-field="obj.name"/></t>
+                                    <t t-if="chked == False">&#9744; <span t-field="obj.name"/></t>
+                                </t>
+                            </p>
+                            <p class="text-center">จากศูนย์บริการโลหิตแห่งชาติ ใบอนุญาตพิเศษเลขที่........../..........ดังนี้</p>
+                        </div>
+                        <div class="col-2">
+                            <p class="text-right py-0 my-0">ปณ??</p>
+                            <div class="text-center">
+                                <img class="rounded rounded-circle border border-dark py-0 my-0"
+                                    height="100" border="1" width="100"/>
+                            </div>
+                            <p class="text-center"> ตราประจำ</p>
+                        </div>
                     </div>
                 </div>
                 <div class="article">

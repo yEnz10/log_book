@@ -38,6 +38,8 @@ class LogBook(models.Model):
     
     def action_print_pdf(self):
         print('action_print_pdf ==========================================================>')
+        print('self=', self.read())
+        # print('data-=>>>>>>>>>>', self.env.context)
         ptt_code = ''
         for rec in self:
             if not ptt_code:
