@@ -38,19 +38,20 @@ class LogBook(models.Model):
     
     def action_print_pdf(self):
         print('action_print_pdf ==========================================================>')
-        print('self=', self.read())
+        print('self=', self.read(), type(self.read()))
+        print('length=', len(self.read()))
         # print('data-=>>>>>>>>>>', self.env.context)
-        ptt_code = ''
-        for rec in self:
-            if not ptt_code:
-                ptt_code = rec.postal_type.code
+        # ptt_code = ''
+        # for rec in self:
+        #     if not ptt_code:
+        #         ptt_code = rec.postal_type.code
                 
-            if ptt_code != rec.postal_type.code:
-                raise ValidationError(_("เลือกประเภทใบฝากได้เพียง 1 ประเภทที่ใช้ในการพิมพ์ใบฝากรวม"))
+        #     if ptt_code != rec.postal_type.code:
+        #         raise ValidationError(_("เลือกประเภทใบฝากได้เพียง 1 ประเภทที่ใช้ในการพิมพ์ใบฝากรวม"))
 
-        action = self.env.ref('log_book.report_deposit_gather').sudo()
+        # action = self.env.ref('log_book.report_deposit_gather').sudo()
         print('end action_print_pdf =======================================================>')
-        return action.report_action(self)
+        # return action.report_action(self)
         
         # print('LOG==========================================================', self)
         # view = self.env.ref('sh_message.shmessage_wizard')

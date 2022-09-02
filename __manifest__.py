@@ -32,6 +32,11 @@
         'demo/demo.xml',
     ],
     "qweb": ['static/src/xml/*.xml'],
+    # "assets": {
+    #     "web.assets_backend": {
+    #         "log_book/static/src/css/my_style.css",
+    #     }
+    # },
     'installable': True,
     'application': True,
     'auto_install': False,
