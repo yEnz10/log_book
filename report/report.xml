@@ -1,5 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+    <record id="paperformat_log_book_hiv" model="report.paperformat">
+        <field name="name">PDF HIV Landscape</field>
+        <field name="default" eval="False"/>
+        <field name="format">A4</field>
+        <field name="orientation">Landscape</field>
+        <field name="page_height">0</field>
+        <field name="page_width">0</field>
+        <field name="margin_top">5</field>
+        <field name="margin_bottom">5</field>
+        <field name="margin_left">5</field>
+        <field name="margin_right">5</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">35</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <record id="report_log_book_hiv" model="ir.actions.report">
+        <field name="name">การติดตามผู้บริจาคโลหิตเฉพาะส่วนและ HIV repeat reactive (2) ที่พบปัญหาผลการตรวจผิดปกติ (PDF)</field>
+        <field name="model">log.book.hiv</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">log_book.report_log_book_hiv</field>
+        <field name="report_file">log_book.report_log_book_hiv</field>
+        <field name="binding_model_id" ref="model_log_book" />
+        <field name="binding_type">report</field>
+        <field name="paperformat_id" ref="log_book.paperformat_log_book_hiv"/>
+    </record>
+
+    <record id="log_book.report_log_book_hiv" model="ir.actions.report">
+        <field name="binding_model_id" eval="False" />
+    </record>
+    
     <record id="paperformat_deposit_gather" model="report.paperformat">
         <field name="name">ใบฝากรวม (PDF)(Paper Format)</field>
         <field name="default" eval="False"/>
@@ -30,37 +61,4 @@
     <record id="log_book.report_deposit_gather" model="ir.actions.report">
         <field name="binding_model_id" eval="False" />
     </record>
-
-   
-
-    <!-- <record id="paperformat_log_book_hiv" model="report.paperformat">
-        <field name="name">PDF HIV Landscape</field>
-        <field name="default" eval="False"/>
-        <field name="format">A4</field>
-        <field name="orientation">Landscape</field>
-        <field name="page_height">0</field>
-        <field name="page_width">0</field>
-        <field name="margin_top">5</field>
-        <field name="margin_bottom">5</field>
-        <field name="margin_left">5</field>
-        <field name="margin_right">5</field>
-        <field name="header_line" eval="False"/>
-        <field name="header_spacing">35</field>
-        <field name="dpi">90</field>
-    </record>
-
-    <record id="report_log_book_hiv" model="ir.actions.report">
-        <field name="name">การติดตามผู้บริจาคโลหิตเฉพาะส่วนและ HIV repeat reactive (2) ที่พบปัญหาผลการตรวจผิดปกติ (PDF)</field>
-        <field name="model">log.book.hiv</field>
-        <field name="report_type">qweb-pdf</field>
-        <field name="report_name">log_book.report_log_book_hiv</field>
-        <field name="report_file">log_book.report_log_book_hiv</field>
-        <field name="binding_model_id" ref="model_log_book_hiv" />
-        <field name="binding_type">report</field>
-        <field name="paperformat_id" ref="log_book.paperformat_log_book_hiv"/>
-    </record>
-
-    <record id="log_book.report_log_book_hiv" model="ir.actions.report">
-        <field name="binding_model_id" eval="False" />
-    </record> -->
 </odoo>

@@ -30,11 +30,11 @@ class LogBookHIV(models.Model):
     #     res = super(LogBookHIV, self).create(vals)
         return 
     
-    def action_print_pdf_hiv(self):
-        print('action_print_pdf_hiv ===========================================================>')
+    def action_print_pdf(self):
+        print('action_print_pdf ===========================================================>')
         action = self.env.ref('log_book.report_log_book_hiv').sudo()
         print('action=', action)
-        print('end action_print_pdf_hiv =======================================================>')
+        print('end action_print_pdf =======================================================>')
         return action.report_action(self)
 
 class LogBookHIVInformer(models.Model):

@@ -32,7 +32,7 @@
         <field name="model">log.book.hiv</field>
         <field name="arch" type="xml">
             <tree>
-                <!-- <header>
+                <header>
                     <button 
                         name="action_print_pdf" 
                         string=" Print การตรวจผิดปกติ (PDF)" 
@@ -40,7 +40,7 @@
                         type="object" 
                         icon="fa-print"
                     />
-                </header> -->
+                </header>
                 <field name="create_date" />
                 <field name="unit_number" />
                 <field name="test_res_problem" />
