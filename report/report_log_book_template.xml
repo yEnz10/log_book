@@ -2,123 +2,117 @@
 <odoo>
     <template id="report_log_book">
         <t t-call="web.html_container">
-                <t t-set="pt_code" t-value="docs.postal_type[0].code"/>
+            <t t-set="pt_code" t-value="form['ptt_code']"/>
+            <!-- <div class="header">
                 
-                <div class="header">
-                    <link rel="stylesheet" href="/log_book/static/src/css/my_style.css"/>
-                    <div class="row" style="padding-top: 50px">
-                        <div class="col-2"/>
-                        <div class="col-8">
-                            <p class="text-center"><b>ใบรับฝากรวม</b></p>
-                            <p class="text-center">ศป./ศฝ./ปณ..............สาขา..............</p>
-                            <p class="text-center">ได้รับฝากไปรษณีย์ ประเภท<![CDATA[&nbsp;]]>
-                                <t t-foreach="request.env['log.book.postal.type'].search([])" t-as="obj">
-                                    <t t-set="chked" t-value="False"/>
-                                    <t t-if="obj.code in pt_code">
-                                        <t t-set="chked" t-value="True"/>
-                                    </t>
-                                    <t t-if="chked == True"><span style="font-size:18px;">&#9745; </span><span t-field="obj.name"/></t>
-                                    <t t-if="chked == False"><span style="font-size:18px;">&#9744; </span><span t-field="obj.name"/></t>
+            </div> -->
+            <div class="article">
+                <link rel="stylesheet" href="/log_book/static/src/css/my_style.css"/>
+                <div class="row">
+                    <div class="col-2"/>
+                    <div class="col-8">
+                        <p class="text-center"><b>ใบรับฝากรวม</b></p>
+                        <p class="text-center">ศป./ศฝ./ปณ....................สาขา....................</p>
+                        <p class="text-center">ได้รับฝากไปรษณีย์ ประเภท<![CDATA[&nbsp;]]>
+                            <!-- <span t-esc="pt_code"/> -->
+                            <t t-foreach="request.env['log.book.postal.type'].search([])" t-as="obj">
+                                <t t-set="chked" t-value="False"/>
+                                <t t-if="obj.code in form['ptt_code']">
+                                    <t t-set="chked" t-value="True"/>
                                 </t>
-                            </p>
-                            <p class="text-center">จากศูนย์บริการโลหิตแห่งชาติ ใบอนุญาตพิเศษเลขที่............../.................ดังนี้</p>
+                                <t t-if="chked == True">
+                                    <span style="font-size:18px; font-family: 'Segoe UI Symbol';">&#9745; </span><span t-field="obj.name"/>
+                                </t>
+                                <t t-if="chked == False">
+                                    <span style="font-size:18px; font-family: 'Segoe UI Symbol';">&#9744; </span><span t-field="obj.name"/>
+                                </t>
+                            </t>
+                        </p>
+                        <p class="text-center">จากศูนย์บริการโลหิตแห่งชาติ ใบอนุญาตพิเศษเลขที่..................../....................ดังนี้</p>
+                    </div>
+                    <div class="col-2">
+                        <p class="text-right py-0 my-0">ปณ??</p>
+                        <div class="text-center">
+                            <img class="rounded rounded-circle border border-dark py-0 my-0"
+                                height="100" border="1" width="100"/>
                         </div>
-                        <div class="col-2">
-                            <p class="text-right py-0 my-0">ปณ??</p>
-                            <div class="text-center">
-                                <img class="rounded rounded-circle border border-dark py-0 my-0"
-                                    height="100" border="1" width="100"/>
-                            </div>
-                            <p class="text-center"> ตราประจำ</p>
-                        </div>
+                        <p class="text-center"> ตราประจำ</p>
                     </div>
                 </div>
-                <div class="article">
-                    <link rel="stylesheet" href="/log_book/static/src/css/my_style.css"/>
-                    <div class="page">
-                        <div class="row justify-content-center">
-                            <table class="table table-bordered">
-                                <thead style="font-size: 14px;">
-                                    <tr>
-                                        <th style="text-align: center; vertical-align: middle;" colspan="1" rowspan="2">ที่</th>
-                                        <th style="text-align: center; vertical-align: middle;" colspan="1" rowspan="2">นามผู้รับ</th>
-                                        <th style="text-align: center; vertical-align: middle;" colspan="1" rowspan="2">ปลายทาง</th>
-                                        <th style="text-align: center; vertical-align: middle;" colspan="1" rowspan="2">เลขที่ Barcode (ตัวเลขใส่ให้ครบ 9 ตัว)</th>
-                                        <th style="text-align: center; vertical-align: middle;" colspan="1" rowspan="2">น้ำหนัก</th>
-                                        <th style="text-align: center; vertical-align: middle;" colspan="2" rowspan="1">ค่าบริการ</th>
-                                        <th style="text-align: center; vertical-align: middle;" colspan="1" rowspan="2">หมายเหตุ</th>
-                                    </tr>
-                                    <tr>
-                                        <th style="text-align: center; vertical-align: middle;" colspan="1" rowspan="1">บาท</th>
-                                        <th style="text-align: center; vertical-align: middle;" colspan="1" rowspan="1">ส.ต.</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <t t-set="at_number" t-value="0"/>
-                                    <t t-set="tt_baht" t-value="0"/>
-                                    <t t-set="tt_satang" t-value="0"/>
-                                    <t t-foreach="docs" t-as="line">
-                                        <t t-set="at_number" t-value="at_number + 1"/>
-                                    <!-- <t t-set="tt_baht" t-value="tt_baht + line.baht"/> -->
-                                    <!-- <t t-set="tt_satang" t-value="tt_satang + line.satang"/> -->
-                                        <tr>
-                                            <td>
-                                                <p><t t-esc="at_number"/></p>
-                                            </td>
-                                            <td>
-                                                <p t-field="line.recipient_name"/>
-                                            </td>
-                                            <td>
-                                                <p t-field="line.destination"/>
-                                            </td>
-                                            <td>
-                                                <p t-field="line.barcode"/>
-                                            </td>
-                                            <td>
-                                                <p t-field="line.weight"/>
-                                            </td>
-                                            <td>
-                                                
-                                            </td>
-                                            <td>
-                                                
-                                            </td>
-                                            <td>
-                                                <p t-field="line.note"/>
-                                            </td>
-                                        </tr>
-                                    </t>
-                                <!-- <tr>
-                                    <td colspan="2">
-                                        <strong>รวม</strong>
-                                    </td>
-                                    <td>
-                                        <t t-esc="at_number"/>
-                                    </td>
-                                    <td>
-                                        <strong>ฉบับ/ห่อ</strong>
-                                    </td>
-                                    <td>
-                                        <strong>รวม</strong>
-                                    </td>
-                                    <td>
-                                        <t t-esc="tt_baht"/>
-                                    </td>
-                                    <td>
-                                        <t t-esc="tt_satang"/>
-                                    </td>
-                                    <td>
-                                    </td>
-                                </tr> -->
-                                </tbody>
-                            </table>
-			            </div>
+                <br/>
+                <table class="table table-condensed table-bordered" style="width: 100%">
+                    <thead>
+                        <tr>
+                            <th style="text-align: center; vertical-align: middle;" colspan="1" rowspan="2">ที่</th>
+                            <th style="text-align: center; vertical-align: middle;" colspan="1" rowspan="2" width="20%">นามผู้รับ</th>
+                            <th style="text-align: center; vertical-align: middle;" colspan="1" rowspan="2">ปลายทาง</th>
+                            <th style="text-align: center; vertical-align: middle;" colspan="1" rowspan="2" width="21%">เลขที่ Barcode (ตัวเลขใส่ให้ครบ 9 ตัว)</th>
+                            <th style="text-align: center; vertical-align: middle;" colspan="1" rowspan="2">น้ำหนัก</th>
+                            <th style="text-align: center; vertical-align: middle;" colspan="2" rowspan="1">ค่าบริการ</th>
+                            <th style="text-align: center; vertical-align: middle;" colspan="1" rowspan="2">หมายเหตุ</th>
+                        </tr>
+                        <tr>
+                            <th style="text-align: center; vertical-align: middle;" colspan="1" rowspan="1">บาท</th>
+                            <th style="text-align: center; vertical-align: middle;" colspan="1" rowspan="1">ส.ต.</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-set="at_number" t-value="0"/>
+                        <t t-foreach="form['rows']" t-as="row">
+                            <t t-set="at_number" t-value="at_number + 1"/>
+                            <tr>
+                                <td style="padding-top: 1px; padding-bottom: 1px;">
+                                    <p><t t-esc="at_number"/></p>
+                                </td>
+                                <td style="padding-top: 1px; padding-bottom: 1px;">
+                                    <p t-esc="row['recipient_name']"/>
+                                </td>
+                                <td style="padding-top: 1px; padding-bottom: 1px;">
+                                    <p t-esc="row['destination']"/>
+                                </td>
+                                <td style="padding-top: 1px; padding-bottom: 1px;">
+                                    <p t-esc="row['barcode']"/>
+                                </td>
+                                <td style="padding-top: 1px; padding-bottom: 1px;">
+                                    <p t-esc="row['weight']"/>
+                                </td>
+                                <td style="padding-top: 1px; padding-bottom: 1px;">
+                                </td>
+                                <td style="padding-top: 1px; padding-bottom: 1px;">
+                                </td>
+                                <td style="padding-top: 1px; padding-bottom: 1px;">
+                                    <p t-esc="row['note']"/>
+                                </td>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+                <br/>
+                <p class="text-left">พนักงานรับฝาก..................................................ตัวหนังสือ (................................................................................)</p>
+                <ol class="ml-5">
+                    <li>ใบรับนี้เป็นหลักฐานการฝากส่ง โปรดเก็บรักษาไว้จนแน่ใจว่าผู้รับสิ่งของแล้วหรือจนกว่าหมดอายุการขอสอบสวน คือ 6 เดือน สำหรับไปรษณีย์ลงทะเบียน/พัสดุไปรษณีย์ และ 4 เดือน สำหรับ EMS (ไปรษณีย์ด่วนพิเศษ) </li>
+                    <li>การขอสอบถามและการสอบถามใดๆ เกี่ยวกับสิ่งของที่ฝากส่งต้องนำไปนี้มาแสดงทุกครั้ง</li>
+                    <li>เลขที่ Barcode ต้องใส่หมวดอักษร และตัวเลขให้ครบ 9 หลัก หากใส่ไม่ครบไม่สามารถตรวจสอบได้</li>
+                </ol>
+                <p class="text-left">ฝ่าย/งาน..............................ตรวจคัดกรองโรหิต................................................................................</p>
+                <p class="text-left">กรณีที่ส่งแบบ EMS ให้ระบุเลขบัตรประชาชนผู่นำส่ง..............................................................................................</p>
+            </div>
+            <div class="footer">
+                <div class="row text-center" style="border-top: 1px solid black;">
+                    <div class="col col-3 offset-9 text-right">
+                        <ul class="list-inline mt-2">
+                            <li class="list-inline-item">Page:</li>
+                            <li class="list-inline-item">
+                                <span class="page"/>
+                            </li>
+                            <li class="list-inline-item">/</li>
+                            <li class="list-inline-item">
+                                <span class="topage"/>
+                            </li>
+                        </ul>
                     </div>
                 </div>
-                <div class="footer" style="font-size: 18px;">
-                    <link rel="stylesheet" href="/log_book/static/src/css/my_style.css"/>
-                    <div>Footer</div>
-                </div>
+            </div>
         </t>
     </template>
 </odoo>

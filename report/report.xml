@@ -3,16 +3,16 @@
     <record id="paperformat_deposit_gather" model="report.paperformat">
         <field name="name">ใบฝากรวม (PDF)(Paper Format)</field>
         <field name="default" eval="False"/>
-        <field name="format">custom</field>
-        <field name="page_width">215</field>
-        <field name="page_height">280</field>
+        <field name="format">A4</field>
+        <field name="page_width">0</field>
+        <field name="page_height">0</field>
         <field name="orientation">Portrait</field>
-        <field name="margin_top">73</field>
-        <field name="margin_bottom">23</field>
+        <field name="margin_top">15</field>
+        <field name="margin_bottom">10</field>
         <field name="margin_left">5</field>
-        <field name="margin_right">10</field>
+        <field name="margin_right">5</field>
         <field name="header_line" eval="False"/>
-        <field name="header_spacing">68</field>
+        <field name="header_spacing">60</field>
         <field name="dpi">90</field>
     </record>
 
@@ -33,9 +33,9 @@
 
    
 
-    <!-- <record id="paperformat_log_book_hiv_landscape" model="report.paperformat">
+    <!-- <record id="paperformat_log_book_hiv" model="report.paperformat">
         <field name="name">PDF HIV Landscape</field>
-        <field name="default" eval="True"/>
+        <field name="default" eval="False"/>
         <field name="format">A4</field>
         <field name="orientation">Landscape</field>
         <field name="page_height">0</field>
@@ -57,10 +57,10 @@
         <field name="report_file">log_book.report_log_book_hiv</field>
         <field name="binding_model_id" ref="model_log_book_hiv" />
         <field name="binding_type">report</field>
-        <field name="paperformat_id" ref="log_book.paperformat_log_book_hiv_landscape"/>
-    </record> -->
+        <field name="paperformat_id" ref="log_book.paperformat_log_book_hiv"/>
+    </record>
 
-    <!-- <record id="log_book.report_log_book_hiv" model="ir.actions.report">
+    <record id="log_book.report_log_book_hiv" model="ir.actions.report">
         <field name="binding_model_id" eval="False" />
     </record> -->
 </odoo>

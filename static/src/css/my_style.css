@@ -4,7 +4,7 @@
 
 @font-face {
     font-family: Sarabun;
-    src: url('/log_book/static/src/fonts/Sarabun-Regular.ttf');
+    src: url('/log_book/static/src/fonts/Sarabun/Sarabun-Regular.ttf');
     font-weight: normal;
     font-style: normal;
 }
@@ -16,4 +16,9 @@ div {
 .th-middle {
     text-align: center; 
     vertical-align: middle;
+}
+
+td {
+    padding-top: 1px;
+    padding-bottom: 1px;
 }

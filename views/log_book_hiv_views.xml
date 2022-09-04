@@ -34,7 +34,7 @@
             <tree>
                 <!-- <header>
                     <button 
-                        name="action_print_pdf_hiv" 
+                        name="action_print_pdf" 
                         string=" Print การตรวจผิดปกติ (PDF)" 
                         class="btn-primary" 
                         type="object" 
