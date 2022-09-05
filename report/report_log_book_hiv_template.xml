@@ -2,30 +2,92 @@
 <odoo>
     <template id="report_log_book_hiv">
         <t t-call="web.html_container">
+            <div class="header">
+                <h3 class="text-center">การติดตามผู้บริจาคโลหิตเฉพาะส่วนและ HIV repeat reactive (2) ที่พบปัญหาผลการตรวจผิดปกติ</h3>
+            </div>
             <div class="article">
-                <p class="text-center"><b>การติดตามผู้บริจาคโลหิตเฉพาะส่วนและ HIV repeat reactive (2) ที่พบปัญหาผลการตรวจผิดปกติ</b></p>
-                <br/>
                 <table class="table table-condensed table-bordered" style="width: 100%">
                     <thead>
                         <tr>
-                            <th class="text-center" colspan="1" rowspan="2">วันที่</th>
-                            <th class="text-center" colspan="1" rowspan="2">ลำดับที่</th>
-                            <th class="text-center" colspan="1" rowspan="2">Unit number</th>
-                            <th class="text-center" colspan="1" rowspan="2">ผลการตรวจที่พบปัญหา</th>
-                            <th class="text-center" colspan="1" rowspan="2">เบอร์โทรศัพท์</th>
-                            <th class="text-center" colspan="2" rowspan="1">การแจ้งทางโทรศัพท์</th>
-                            <th class="text-center" colspan="1" rowspan="2">วันเวลาที่โทร</th>
-                            <th class="text-center" colspan="1" rowspan="2">เวลา</th>
-                            <th class="text-center" colspan="1" rowspan="2">เวลานัดครั้งถัดไป</th>
-                            <th class="text-center" colspan="1" rowspan="2">ผู้แจ้ง</th>
-                            <th class="text-center" colspan="1" rowspan="2">หมายเหตุ</th>
+                            <th style="text-align: center; vertical-align: middle;" colspan="1" rowspan="2" width="30%">วันที่</th>
+                            <th style="text-align: center; vertical-align: middle;" colspan="1" rowspan="2" width="5%">ลำดับที่</th>
+                            <th style="text-align: center; vertical-align: middle;" colspan="1" rowspan="2">Unit number</th>
+                            <th style="text-align: center; vertical-align: middle;" colspan="1" rowspan="2">ผลการตรวจที่พบปัญหา</th>
+                            <th style="text-align: center; vertical-align: middle;" colspan="1" rowspan="2">เบอร์โทรศัพท์</th>
+                            <th style="text-align: center; vertical-align: middle;" colspan="2" rowspan="1">การแจ้งทางโทรศัพท์</th>
+                            <th style="text-align: center; vertical-align: middle;" colspan="1" rowspan="2">วันเวลาที่โทร</th>
+                            <th style="text-align: center; vertical-align: middle;" colspan="1" rowspan="2">เวลา</th>
+                            <th style="text-align: center; vertical-align: middle;" colspan="1" rowspan="2">เวลานัดครั้งถัดไป</th>
+                            <th style="text-align: center; vertical-align: middle;" colspan="1" rowspan="2">ผู้แจ้ง</th>
+                            <th style="text-align: center; vertical-align: middle;" colspan="1" rowspan="2">หมายเหตุ</th>
                         </tr>
                         <tr>
-                            <th class="text-center" colspan="1" rowspan="1">ติดต่อได้</th>
-                            <th class="text-center" colspan="1" rowspan="1">ติดต่อไม่ได้</th>
+                            <th style="text-align: center; vertical-align: middle;" colspan="1" rowspan="1">ติดต่อได้</th>
+                            <th style="text-align: center; vertical-align: middle;" colspan="1" rowspan="1">ติดต่อไม่ได้</th>
                         </tr>
                     </thead>
+                    <tbody>
+                        <t t-set="at_number" t-value="0"/>
+                        <t t-foreach="form['rows']" t-as="row">
+                            <t t-set="call_datetime" t-value="row['call_datetime'].split(' ')"/>
+                            <t t-set="at_number" t-value="at_number + 1"/>
+                            <tr>
+                                <td style="padding-top: 1px; padding-bottom: 1px;">
+                                    <p><t t-esc="datetime.datetime.strptime(row['create_date'], '%Y-%m-%d').strftime('%d %b %Y')"/></p>
+                                </td>
+                                <td style="padding-top: 1px; padding-bottom: 1px;">
+                                    <p><t t-esc="at_number"/></p>
+                                </td>
+                                <td style="padding-top: 1px; padding-bottom: 1px;">
+                                    <p><t t-esc="row['unit_number']"/></p>
+                                </td>
+                                <td style="padding-top: 1px; padding-bottom: 1px;">
+                                    <p><t t-esc="row['test_res_problem']"/></p>
+                                </td>
+                                <td style="padding-top: 1px; padding-bottom: 1px;">
+                                    <p><t t-esc="row['call_number']"/></p>
+                                </td>
+                                <td style="padding-top: 1px; padding-bottom: 1px;">
+                                    <p><t t-esc="row['contactable']"/></p>
+                                </td>
+                                <td style="padding-top: 1px; padding-bottom: 1px;">
+                                    <p><t t-esc="row['uncontactable']"/></p>
+                                </td>
+                                <td style="padding-top: 1px; padding-bottom: 1px;">
+                                    <p><t t-esc="datetime.datetime.strptime(call_datetime[0], '%Y-%m-%d').strftime('%d %b %Y')"/></p>
+                                </td>
+                                <td style="padding-top: 1px; padding-bottom: 1px;">
+                                    <p><t t-esc="call_datetime[1]"/></p>
+                                </td>
+                                <td style="padding-top: 1px; padding-bottom: 1px;">
+                                    <p><t t-esc="datetime.datetime.strptime(row['next_time'], '%Y-%m-%d %H:%M:%S').strftime('%d %b %Y %H:%M:%S')"/></p>
+                                </td>
+                                <td style="padding-top: 1px; padding-bottom: 1px;">
+                                    <p><t t-esc="row['informer'][1]"/></p>
+                                </td>
+                                <td style="padding-top: 1px; padding-bottom: 1px;">
+                                    <p><t t-esc="row['note']"/></p>
+                                </td>
+                            </tr>
+                        </t>
+                    </tbody>
                 </table>            
+            </div>
+            <div class="footer">
+                <div class="row text-center" style="border-top: 1px solid black;">
+                    <div class="col col-3 offset-9 text-right">
+                        <ul class="list-inline mt-2">
+                            <li class="list-inline-item">Page:</li>
+                            <li class="list-inline-item">
+                                <span class="page"/>
+                            </li>
+                            <li class="list-inline-item">/</li>
+                            <li class="list-inline-item">
+                                <span class="topage"/>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </t>
     </template>

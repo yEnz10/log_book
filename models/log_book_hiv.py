@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from odoo import models, fields, api, _
 from datetime import datetime, date, time
+from odoo.tools import DEFAULT_SERVER_DATE_FORMAT as DATE_FORMAT, DEFAULT_SERVER_DATETIME_FORMAT as DATETIME_FORMAT
 
 class LogBookHIV(models.Model):
     _name = 'log.book.hiv'
@@ -32,10 +33,24 @@ class LogBookHIV(models.Model):
     
     def action_print_pdf(self):
         print('action_print_pdf ===========================================================>')
+        print('self.read()=', self)
+        for row in self:
+            shw_date = datetime.datetime.strptime(row.call_datetime, DATE_FORMAT)
+            print('-=shw_date-=' ,shw_date)
+            print('-=row.call_datetime-=', row.call_datetime)
+        # data = {
+        #     'ids': self.ids,
+        #     'model': self._name,
+        #     'form': {
+        #         'rows': self.read(),
+        #     },
+        # }
         action = self.env.ref('log_book.report_log_book_hiv').sudo()
-        print('action=', action)
+        # for row in data['form']['rows']:
+        #     print('row[call_datetime]=', row['call_datetime'])
+        # print('action=', action)
         print('end action_print_pdf =======================================================>')
-        return action.report_action(self)
+        # return action.report_action(self, data=data)
 
 class LogBookHIVInformer(models.Model):
     _name = 'log.book.hiv.informer'
